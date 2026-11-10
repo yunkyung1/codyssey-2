@@ -65,10 +65,52 @@ while True:
         print(f"최종 점수: {score}/{len(quizzes)}")
 
 
+   
     elif choice == 2:
-        print("퀴즈 추가 준비 중")
+        print("\n===== 퀴즈 추가 =====")
+
+        question = input("문제를 입력하세요: ").strip()
+
+        if not question:
+            print("문제는 비워둘 수 없습니다.")
+            continue
+
+        choices = []
+
+        for i in range(1, 5):
+            choice_text = input(f"{i}번 선택지: ").strip()
+
+            if not choice_text:
+                print("선택지는 비워둘 수 없습니다.")
+                break
+
+            choices.append(choice_text)
+
+        if len(choices) != 4:
+            continue
+
+        try:
+            answer = int(input("정답 번호 (1~4): ").strip())
+        except ValueError:
+            print("정답은 숫자로 입력해야 합니다.")
+            continue
+
+        if answer not in range(1, 5):
+            print("정답은 1~4 중에서 선택해야 합니다.")
+            continue
+
+        quizzes.append(Quiz(question, choices, answer))
+        print("퀴즈가 추가되었습니다!")
+
+
     elif choice == 3:
-        print("퀴즈 목록 준비 중")
+        print("\n===== 퀴즈 목록 =====")
+
+        for i, quiz in enumerate(quizzes, start=1):
+            print(f"{i}. {quiz.question}")
+
+        print(f"총 {len(quizzes)}개의 퀴즈가 등록되어 있습니다.")
+
     elif choice == 4:
         print("점수 확인 준비 중")
     elif choice == 5:
