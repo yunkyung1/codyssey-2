@@ -1,3 +1,26 @@
+class Quiz:
+    def __init__(self, question, choices, answer):
+        self.question = question
+        self.choices = choices
+        self.answer = answer
+
+    def show_question(self):
+        print(self.question)
+
+        for i, choice in enumerate(self.choices, start=1):
+            print(f"{i}. {choice}")
+
+    def check_answer(self, user_answer):
+        return self.answer == user_answer
+
+
+quizzes = [
+    Quiz("피카츄의 타입은?", ["물", "불꽃", "전기", "풀"], 3),
+    Quiz("파이리의 타입은?", ["풀", "불꽃", "물", "전기"], 2),
+    Quiz("꼬부기의 타입은?", ["물", "풀", "불꽃", "얼음"], 1),
+    Quiz("이상해씨의 타입 조합은?", ["풀/독", "물/독", "불꽃/독", "풀/전기"], 1),
+    Quiz("이브이가 진화할 수 있는 포켓몬은?", ["피카츄", "잠만보", "샤미드", "뮤"], 3)
+]
 
 while True:
     print("\n===== 포켓몬 퀴즈 게임 =====")

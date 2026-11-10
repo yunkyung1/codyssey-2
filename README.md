@@ -51,7 +51,7 @@ codyssey-2/
 
 ## 8. 실행 결과
  ### 1. 메뉴 화면
- python main.py입력으로 첫 화면인 메뉴 출력 완성 
+ python main.py 실행 시 메뉴 출력 및 번호 선택 기능 구현 완료.
  ![메뉴 실행](images/8-1.png)
 
 ## 9. Git 작업 기록
