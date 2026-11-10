@@ -65,3 +65,11 @@ codyssey-2/
 
 ## 9. Git 작업 기록
 기능별 커밋, 브랜치 생성 및 병합, clone과 pull 실습을 진행한다.
+
+ ### 1. Git 브랜치 생성 및 확인
+
+ 퀴즈 풀기 기능을 개발하기 위해
+ `feature/quiz-play` 브랜치를 생성하였다.
+ `git branch` 명령어로 현재 작업 브랜치를 확인하였다.
+ ![Git 브랜치 확인](images/9-1.png)
+ 
