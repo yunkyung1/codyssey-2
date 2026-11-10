@@ -1,0 +1,56 @@
+# Codyssey Mission 2 - Python Quiz Game
+
+## 1. 프로젝트 개요
+Python을 사용하여 터미널에서 실행하는 퀴즈 게임을 제작한다.
+
+## 2. 퀴즈 주제
+포켓몬 퀴즈
+
+선정 이유: 평소 관심 있는 주제로 직접 문제를 만들고 Python 프로그래밍을 학습하기 위해 선택하였다.
+
+## 3. 개발 환경
+- Python 3.11.6
+- Git 2.56.0
+- VS Code
+- Windows / PowerShell
+
+### 환경 확인
+![개발 환경](images/3.png)
+
+## 4. 실행 방법
+```bash
+python main.py
+```
+
+## 5. 주요 기능
+- 퀴즈 풀기
+- 퀴즈 추가
+- 퀴즈 목록 확인
+- 최고 점수 확인
+- 게임 종료
+- JSON 파일 저장 및 불러오기
+- 잘못된 입력 및 오류 처리
+
+## 6. 파일 구조
+```text
+codyssey-2/
+├── main.py
+├── state.json
+├── README.md
+├── .gitignore
+└── images/
+    └── 1.png
+```
+
+## 7. 데이터 저장
+- 파일명: `state.json`
+- 저장 위치: 프로젝트 최상위 폴더
+- 인코딩: UTF-8
+- `quizzes`: 문제, 선택지, 정답을 저장
+- `best_score`: 최고 점수를 저장
+
+## 8. 실행 결과
+게임 구현 후 실행 화면을 추가할 예정이다.
+
+## 9. Git 작업 기록
+기능별 커밋, 브랜치 생성 및 병합, clone과 pull 실습을 진행한다.
