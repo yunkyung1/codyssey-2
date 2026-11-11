@@ -1,3 +1,7 @@
+import json
+from pathlib import Path
+
+
 class Quiz:
     def __init__(self, question, choices, answer):
         self.question = question
@@ -22,99 +26,183 @@ quizzes = [
     Quiz("이브이가 진화할 수 있는 포켓몬은?", ["피카츄", "잠만보", "샤미드", "뮤"], 3)
 ]
 
-while True:
-    print("\n===== 포켓몬 퀴즈 게임 =====")
-    print("1. 퀴즈 풀기")
-    print("2. 퀴즈 추가")
-    print("3. 퀴즈 목록")
-    print("4. 점수 확인")
-    print("5. 종료")
 
-    try:
-        choice = int(input("번호를 선택하세요: ").strip())
-    except ValueError:
-        print("숫자를 입력해주세요.")
-        continue
-    except (KeyboardInterrupt, EOFError):
-        print("\n프로그램을 안전하게 종료합니다.")
-        break
+class QuizGame:
+    def __init__(self, quizzes):
+        self.quizzes = quizzes
+        self.best_score = 0
+        self.data_file = Path(__file__).with_name("state.json")
+        self.load_state()
 
-   
+    def save_state(self):
+        data = {
+            "quizzes": [
+                {
+                    "question": quiz.question,
+                    "choices": quiz.choices,
+                    "answer": quiz.answer
+                }
+                for quiz in self.quizzes
+            ],
+            "best_score": self.best_score
+        }
 
-    if choice == 1:
+        try:
+            with open(self.data_file, "w", encoding="utf-8") as file:
+                json.dump(data, file, ensure_ascii=False, indent=4)
+        except OSError:
+            print("파일 저장 중 오류가 발생했습니다.")
+
+
+    def load_state(self):
+        if not self.data_file.exists():
+            return
+
+        try:
+            with open(self.data_file, "r", encoding="utf-8") as file:
+                data = json.load(file)
+
+            saved_quizzes = data["quizzes"]
+            saved_score = data["best_score"]
+
+            loaded_quizzes = []
+
+            for item in saved_quizzes:
+                question = item["question"]
+                choices = item["choices"]
+                answer = item["answer"]
+
+                if (
+                    not isinstance(question, str)
+                    or not question.strip()
+                    or not isinstance(choices, list)
+                    or len(choices) != 4
+                    or not all(isinstance(c, str) and c.strip() for c in choices)
+                    or type(answer) is not int
+                    or answer not in range(1, 5)
+                ):
+                    raise ValueError("잘못된 퀴즈 데이터")
+
+                loaded_quizzes.append(Quiz(question, choices, answer))
+
+            if type(saved_score) is not int or saved_score < 0:
+                raise ValueError("잘못된 점수 데이터")
+
+            self.quizzes = loaded_quizzes
+            self.best_score = saved_score
+
+        except (OSError, ValueError, KeyError, TypeError):
+            print("저장 파일을 읽을 수 없어 기본 문제로 시작합니다.")
+
+
+    def show_menu(self):
+        print("\n===== 포켓몬 퀴즈 게임 =====")
+        print("1. 퀴즈 풀기")
+        print("2. 퀴즈 추가")
+        print("3. 퀴즈 목록")
+        print("4. 점수 확인")
+        print("5. 종료")
+
+
+    def play_quiz(self):
         score = 0
 
-        for quiz in quizzes:
+        for quiz in self.quizzes:
             quiz.show_question()
 
             try:
-                user_answer = int(input("정답 번호 (1~4): ").strip())
+                answer = int(input("정답 번호 (1~4): ").strip())
             except ValueError:
                 print("숫자가 아니므로 오답 처리합니다.")
                 continue
             except (KeyboardInterrupt, EOFError):
                 print("\n퀴즈를 중단합니다.")
-                break
+                return
 
-            if quiz.check_answer(user_answer):
+            if quiz.check_answer(answer):
                 print("정답입니다!")
                 score += 1
             else:
                 print("오답입니다!")
 
-        print(f"최종 점수: {score}/{len(quizzes)}")
+        print(f"최종 점수: {score}/{len(self.quizzes)}")
+
+        if score > self.best_score:
+            self.best_score = score
+            self.save_state()
 
 
-   
-    elif choice == 2:
+    def add_quiz(self):
         print("\n===== 퀴즈 추가 =====")
 
         question = input("문제를 입력하세요: ").strip()
 
         if not question:
             print("문제는 비워둘 수 없습니다.")
-            continue
+            return
 
         choices = []
 
         for i in range(1, 5):
-            choice_text = input(f"{i}번 선택지: ").strip()
+            choice = input(f"{i}번 선택지: ").strip()
 
-            if not choice_text:
+            if not choice:
                 print("선택지는 비워둘 수 없습니다.")
-                break
+                return
 
-            choices.append(choice_text)
-
-        if len(choices) != 4:
-            continue
+            choices.append(choice)
 
         try:
             answer = int(input("정답 번호 (1~4): ").strip())
         except ValueError:
             print("정답은 숫자로 입력해야 합니다.")
-            continue
+            return
 
         if answer not in range(1, 5):
             print("정답은 1~4 중에서 선택해야 합니다.")
-            continue
+            return
 
-        quizzes.append(Quiz(question, choices, answer))
+        self.quizzes.append(Quiz(question, choices, answer))
+        self.save_state()
         print("퀴즈가 추가되었습니다!")
 
 
-    elif choice == 3:
+    def list_quizzes(self):
         print("\n===== 퀴즈 목록 =====")
 
-        for i, quiz in enumerate(quizzes, start=1):
+        for i, quiz in enumerate(self.quizzes, start=1):
             print(f"{i}. {quiz.question}")
 
-        print(f"총 {len(quizzes)}개의 퀴즈가 등록되어 있습니다.")
+        print(f"총 {len(self.quizzes)}개의 퀴즈가 등록되어 있습니다.")
 
-    elif choice == 4:
-        print("점수 확인 준비 중")
-    elif choice == 5:
-        print("게임을 종료합니다.")
-        break
-    else:
-        print("1~5 사이의 숫자를 입력해주세요.")
+
+    def run(self):
+        while True:
+            self.show_menu()
+
+            try:
+                choice = int(input("번호를 선택하세요: ").strip())
+            except ValueError:
+                print("숫자를 입력해주세요.")
+                continue
+            except (KeyboardInterrupt, EOFError):
+                print("\n프로그램을 안전하게 종료합니다.")
+                break
+
+            if choice == 1:
+                self.play_quiz()
+            elif choice == 2:
+                self.add_quiz()
+            elif choice == 3:
+                self.list_quizzes()
+            elif choice == 4:
+                print(f"최고 점수: {self.best_score}")
+            elif choice == 5:
+                print("게임을 종료합니다.")
+                break
+            else:
+                print("1~5 사이의 숫자를 입력해주세요.")
+
+
+game = QuizGame(quizzes)
+game.run()
