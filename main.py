@@ -107,17 +107,35 @@ class QuizGame:
     def play_quiz(self):
         score = 0
 
+        if not self.quizzes:
+            print("등록된 퀴즈가 없습니다.")
+            return
+
         for quiz in self.quizzes:
             quiz.show_question()
 
-            try:
-                answer = int(input("정답 번호 (1~4): ").strip())
-            except ValueError:
-                print("숫자가 아니므로 오답 처리합니다.")
-                continue
-            except (KeyboardInterrupt, EOFError):
-                print("\n퀴즈를 중단합니다.")
-                return
+            while True:
+                try:
+                    user_input = input("정답 번호 (1~4): ").strip()
+
+                    if not user_input:
+                        print("정답 번호를 입력해주세요.")
+                        continue
+
+                    answer = int(user_input)
+
+                    if answer not in range(1, 5):
+                        print("1~4 사이의 숫자를 입력해주세요.")
+                        continue
+
+                    break
+
+                except ValueError:
+                    print("숫자를 입력해주세요.")
+
+                except (KeyboardInterrupt, EOFError):
+                    print("\n퀴즈를 중단합니다.")
+                    return
 
             if quiz.check_answer(answer):
                 print("정답입니다!")
@@ -132,34 +150,52 @@ class QuizGame:
             self.save_state()
 
 
+ 
     def add_quiz(self):
         print("\n===== 퀴즈 추가 =====")
 
-        question = input("문제를 입력하세요: ").strip()
-
-        if not question:
-            print("문제는 비워둘 수 없습니다.")
-            return
-
-        choices = []
-
-        for i in range(1, 5):
-            choice = input(f"{i}번 선택지: ").strip()
-
-            if not choice:
-                print("선택지는 비워둘 수 없습니다.")
-                return
-
-            choices.append(choice)
-
         try:
-            answer = int(input("정답 번호 (1~4): ").strip())
-        except ValueError:
-            print("정답은 숫자로 입력해야 합니다.")
-            return
+            while True:
+                question = input("문제를 입력하세요: ").strip()
 
-        if answer not in range(1, 5):
-            print("정답은 1~4 중에서 선택해야 합니다.")
+                if question:
+                    break
+
+                print("문제는 비워둘 수 없습니다.")
+
+            choices = []
+
+            for i in range(1, 5):
+                while True:
+                    choice = input(f"{i}번 선택지: ").strip()
+
+                    if choice:
+                        choices.append(choice)
+                        break
+
+                    print("선택지는 비워둘 수 없습니다.")
+
+            while True:
+                try:
+                    user_input = input("정답 번호 (1~4): ").strip()
+
+                    if not user_input:
+                        print("정답 번호를 입력해주세요.")
+                        continue
+
+                    answer = int(user_input)
+
+                    if answer not in range(1, 5):
+                        print("정답은 1~4 중에서 선택해야 합니다.")
+                        continue
+
+                    break
+
+                except ValueError:
+                    print("정답은 숫자로 입력해야 합니다.")
+
+        except (KeyboardInterrupt, EOFError):
+            print("\n퀴즈 추가를 중단합니다.")
             return
 
         self.quizzes.append(Quiz(question, choices, answer))
