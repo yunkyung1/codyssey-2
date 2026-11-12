@@ -1,65 +1,55 @@
 {
     "quizzes": [
         {
-            "question": "피카츄의 타입은?",
+            "question": "Python에서 값을 저장할 때 사용하는 것은?",
             "choices": [
-                "물",
-                "불꽃",
-                "전기",
-                "풀"
-            ],
-            "answer": 3
-        },
-        {
-            "question": "파이리의 타입은?",
-            "choices": [
-                "풀",
-                "불꽃",
-                "물",
-                "전기"
+                "반복문",
+                "변수",
+                "조건문",
+                "클래스"
             ],
             "answer": 2
         },
         {
-            "question": "꼬부기의 타입은?",
+            "question": "Python에서 문자열을 나타내는 자료형은?",
             "choices": [
-                "물",
-                "풀",
-                "불꽃",
-                "얼음"
-            ],
-            "answer": 1
-        },
-        {
-            "question": "이상해씨의 타입 조합은?",
-            "choices": [
-                "풀/독",
-                "물/독",
-                "불꽃/독",
-                "풀/전기"
-            ],
-            "answer": 1
-        },
-        {
-            "question": "이브이가 진화할 수 있는 포켓몬은?",
-            "choices": [
-                "피카츄",
-                "잠만보",
-                "샤미드",
-                "뮤"
+                "int",
+                "bool",
+                "str",
+                "list"
             ],
             "answer": 3
         },
         {
-            "question": "뮤츠의 타입은?",
+            "question": "조건에 따라 다른 코드를 실행할 때 사용하는 것은?",
             "choices": [
-                "불꽃",
-                "에스퍼",
-                "물",
-                "악"
+                "if",
+                "for",
+                "while",
+                "def"
             ],
-            "answer": 2
+            "answer": 1
+        },
+        {
+            "question": "리스트의 항목을 하나씩 반복할 때 주로 사용하는 문법은?",
+            "choices": [
+                "if",
+                "class",
+                "return",
+                "for"
+            ],
+            "answer": 4
+        },
+        {
+            "question": "Python에서 함수를 정의할 때 사용하는 키워드는?",
+            "choices": [
+                "print",
+                "input",
+                "def",
+                "import"
+            ],
+            "answer": 3
         }
     ],
-    "best_score": 3
+    "best_score": 4
 }
