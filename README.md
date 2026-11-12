@@ -60,6 +60,7 @@ codyssey-2/
 ## 8. 실행 결과
 ### 1. 메뉴 화면
 python main.py 실행 시 메뉴 출력 및 번호 선택 기능 구현 완료.
+
 ![메뉴 실행](images/8-1.png)
 
 ### 2. 퀴즈 풀기
@@ -100,11 +101,13 @@ Python 기초 문법에 관한 기본 퀴즈 5개를 출제하고,
 
 잘못된 숫자, 문자, 빈 입력이 발생하면
 안내 메시지를 출력하고 다시 입력받도록 구현하였다.
+
 ![퀴즈 입력 오류 처리](images/8-6-1.png)
 ![퀴즈 추가 입력 오류 처리](images/8-6-2.png)
 
 Ctrl+C 및 EOFError 발생 시 예외를 처리하고,
 state.json 파일의 이름을 임시로 state1.json으로 변경하여 저장 파일이 없는 상황을 재현하고, 기본 퀴즈로 실행되는지 확인하였다.
+
 ![저장 파일 누락 예외 처리](images/8-6-3.png)
 
 
@@ -116,6 +119,7 @@ state.json 파일의 이름을 임시로 state1.json으로 변경하여 저장 �
  퀴즈 풀기 기능을 개발하기 위해
  `feature/quiz-play` 브랜치를 생성하였다.
  `git branch` 명령어로 현재 작업 브랜치를 확인하였다.
+
  ![Git 브랜치 확인](images/9-1.png)
 
  퀴즈 게임의 기능 구현과 테스트를 완료한 후
@@ -129,6 +133,7 @@ state.json 파일의 이름을 임시로 state1.json으로 변경하여 저장 �
  ### 2. Git 커밋 및 변경 이력 확인
  프로젝트 개발 과정에서 기능별 변경 사항을 커밋으로 기록하였다.
  git --no-pager log --oneline --graph --all
+
 ![Git 커밋 이력 확인](images/9-2.png)
 
  ### 3. Git clone 및 pull 실습
@@ -136,6 +141,7 @@ GitHub 저장소를 `git clone` 명령어로 코디세이 컴퓨터에 복제하
 `git pull origin feature/quiz-play` 명령어를 실행하여 원격 저장소와 현재 브랜치의 동기화 상태를 확인하였다.
 
 실행 결과 `Already up to date.` 메시지가 출력되어 최신 상태임을 확인하였다.
+
 ![Git pull 실행 결과](images/9-3.png)
 
 
