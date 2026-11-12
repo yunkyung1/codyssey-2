@@ -124,11 +124,12 @@ state.json 파일의 이름을 임시로 state1.json으로 변경하여 저장 �
 git --no-pager log --oneline --graph --all
 ![Git 커밋 이력 확인](images/9-2.png)
 
-## 10. 보너스 기능 - 퀴즈 무작위 출제
 
+## 10. 보너스 기능 - 퀴즈 무작위 출제
 퀴즈를 실행할 때마다 문제의 출제 순서가 무작위로 변경되도록 기능을 추가하였다.
 
 기존에는 등록된 순서대로 문제가 출제되었지만, 무작위 출제 기능을 통해 반복 실행 시 다양한 순서로 문제를 풀 수 있도록 개선하였다.
+import random
+ for quiz in random.sample(self.quizzes, len(self.quizzes)):
 
-Python의 `random` 모듈과 `random.sample()` 함수를 사용하였다.
 ![무작위 출제실행](images/10.png)
