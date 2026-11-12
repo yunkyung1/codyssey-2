@@ -1,4 +1,5 @@
 import json
+import random
 from pathlib import Path
 
 
@@ -132,7 +133,7 @@ class QuizGame:
             print("등록된 퀴즈가 없습니다.")
             return
 
-        for quiz in self.quizzes:
+        for quiz in random.sample(self.quizzes, len(self.quizzes)):
             quiz.show_question()
 
             while True:

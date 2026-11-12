@@ -49,6 +49,16 @@
                 "import"
             ],
             "answer": 3
+        },
+        {
+            "question": "Python에서 사용자에게 값을 입력받을 때 사용하는 함수는?",
+            "choices": [
+                "print()",
+                "input()",
+                "len()",
+                "type()"
+            ],
+            "answer": 2
         }
     ],
     "best_score": 4
