@@ -59,11 +59,11 @@ codyssey-2/
 
 
 ## 8. 실행 결과
- ### 1. 메뉴 화면
- python main.py 실행 시 메뉴 출력 및 번호 선택 기능 구현 완료.
- ![메뉴 실행](images/8-1.png)
+### 1. 메뉴 화면
+python main.py 실행 시 메뉴 출력 및 번호 선택 기능 구현 완료.
+![메뉴 실행](images/8-1.png)
 
- ### 2. 퀴즈 풀기
+### 2. 퀴즈 풀기
 Python 기초 문법에 관한 기본 퀴즈 5개를 출제하고,
 사용자가 입력한 답의 정답 여부를 확인하도록 구현하였다.
 
@@ -120,9 +120,18 @@ state.json 파일의 이름을 임시로 state1.json으로 변경하여 저장 �
  ![Git 브랜치 확인](images/9-1.png)
 
  ### 2. Git 커밋 및 변경 이력 확인
-프로젝트 개발 과정에서 기능별 변경 사항을 커밋으로 기록하였다.
-git --no-pager log --oneline --graph --all
+ 프로젝트 개발 과정에서 기능별 변경 사항을 커밋으로 기록하였다.
+ git --no-pager log --oneline --graph --all
 ![Git 커밋 이력 확인](images/9-2.png)
+
+ ### 3. Git clone 및 pull 실습
+GitHub 저장소를 `git clone` 명령어로 코디세이 컴퓨터에 복제하여 작업 환경을 구성하였다.
+`git pull origin feature/quiz-play` 명령어를 실행하여 원격 저장소와 현재 브랜치의 동기화 상태를 확인하였다.
+
+실행 결과 `Already up to date.` 메시지가 출력되어 최신 상태임을 확인하였다.
+![Git pull 실행 결과](images/9-3.png)
+
+
 
 
 ## 10. 보너스 기능 - 퀴즈 무작위 출제
