@@ -132,9 +132,10 @@ class QuizGame:
         if not self.quizzes:
             print("등록된 퀴즈가 없습니다.")
             return
-
-        for quiz in random.sample(self.quizzes, len(self.quizzes)):
+        for i, quiz in enumerate(random.sample(self.quizzes, len(self.quizzes)), start=1):
+            print(f"\n[{i}번문제]")
             quiz.show_question()
+    
 
             while True:
                 try:
