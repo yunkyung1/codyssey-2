@@ -119,6 +119,14 @@ state.json 파일의 이름을 임시로 state1.json으로 변경하여 저장 �
  `git branch` 명령어로 현재 작업 브랜치를 확인하였다.
  ![Git 브랜치 확인](images/9-1.png)
 
+ 퀴즈 게임의 기능 구현과 테스트를 완료한 후
+`git checkout main` 명령어로 main 브랜치로 이동하였다.
+이후 `git merge feature/quiz-play` 명령어를 실행하여
+개발 브랜치의 작업 내용을 main 브랜치에 병합하였다.
+
+병합 결과 `Fast-forward` 메시지가 출력되었으며,충돌 없이 변경 사항이 반영된 것을 확인하였다.
+![Git 브랜치 병합 결과](images/9-1-1.png)
+
  ### 2. Git 커밋 및 변경 이력 확인
  프로젝트 개발 과정에서 기능별 변경 사항을 커밋으로 기록하였다.
  git --no-pager log --oneline --graph --all
